@@ -11,9 +11,8 @@ pub struct VaultInitialized {
 #[event]
 pub struct Deposited {
     pub owner: Pubkey,
-    pub mint: Pubkey,
-    pub unlock_time: i64,
-    pub lock_duration: i64,
+    pub amount: u64,
+    pub total: u64,
 }
 
 #[event]
