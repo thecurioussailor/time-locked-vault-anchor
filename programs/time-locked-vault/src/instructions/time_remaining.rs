@@ -4,11 +4,10 @@ use crate::VaultState;
 
 #[derive(Accounts)]
 pub struct TimeRemaining<'info> {
-    // used only for PDA derivation (read only)
+    /// CHECK: read-only account used only for PDA seed derivation; no data is read or written
     pub owner: UncheckedAccount<'info>,
 
     #[account(
-        mut,
         seeds = [b"vault_state", owner.key().as_ref(), vault_state.mint.as_ref()],
         bump = vault_state.bump,
     )]

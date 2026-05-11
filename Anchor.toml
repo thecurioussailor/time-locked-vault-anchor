@@ -8,8 +8,11 @@ skip-lint = false
 [programs.localnet]
 time_locked_vault = "8wVnNuJttbSMP6zEMsCosBFb5UsdG4BgEjFa1iD9D2LM"
 
+[programs.devnet]
+time_locked_vault = "8wVnNuJttbSMP6zEMsCosBFb5UsdG4BgEjFa1iD9D2LM"
+
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]

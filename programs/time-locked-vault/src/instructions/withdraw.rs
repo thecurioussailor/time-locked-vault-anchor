@@ -23,6 +23,11 @@ pub struct Withdraw<'info> {
     )]
     pub owner_token_account: Account<'info, TokenAccount>,
 
+    #[account(
+        mut,
+        seeds = [b"vault", owner.key().as_ref(), vault_state.mint.as_ref()],
+        bump = vault_state.vault_bump,
+    )]
     pub vault_token_account: Account<'info, TokenAccount>,
 
     pub token_program: Program<'info, Token>,
@@ -66,7 +71,7 @@ impl<'info> Withdraw<'info> {
         )?;
 
         self.vault_state.total_deposited = self.vault_state.total_deposited
-            .checked_add(amount)
+            .checked_sub(amount)
             .ok_or(VaultError::Overflow)?;
 
         emit!(Withdrawn {
